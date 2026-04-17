@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AniFlow | News Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<style>
+    * {
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  
+  :root {
+    --bg: #f5f5f7;
+    --text: #1d1d1f;
+    --text-sec: #6e6e73;
+    --glass: rgba(255, 255, 255, 0.6);
+    --border: rgba(0, 0, 0, 0.08);
+    --accent: #1d1d1f;
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Unique Shape Background */
+  .bg-shapes {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -1;
+    overflow: hidden;
+  }
+  .shape {
+    position: absolute;
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    background: linear-gradient(135deg, #e8e8ed, #ffffff);
+    animation: morph 15s ease-in-out infinite;
+  }
+  .shape1 { width: 500px; height: 500px; top: -200px; left: -200px; }
+  .shape2 { width: 400px; height: 400px; bottom: -150px; right: -150px; animation-delay: -5s; }
+  .shape3 { width: 300px; height: 300px; top: 50%; left: 60%; animation-delay: -10s; opacity: 0.7; }
+  
+  @keyframes morph {
+    0%, 100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; transform: rotate(0deg); }
+    50% { border-radius: 70% 30% 50% / 30% 30% 70% 70%; transform: rotate(180deg); }
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+
+  /* Glass Header */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 28px;
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+    margin-bottom: 60px;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .logo i { font-size: 28px; }
+
+  .nav-btn {
+    padding: 12px 24px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 16px;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+  }
+  .nav-btn:hover { transform: translateY(-2px); opacity: 0.9; }
+
+  /* Hero Section */
+  .hero {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+  .hero h1 {
+    font-size: clamp(40px, 8vw, 72px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    letter-spacing: -2px;
+  }
+  .hero p {
+    font-size: 18px;
+    color: var(--text-sec);
+    max-width: 600px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+  }
+
+  .cta-group {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .cta-btn {
+    padding: 18px 36px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    border: 1px solid transparent;
+  }
+  .cta-primary {
+    background: var(--accent);
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+  .cta-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
+  
+  .cta-secondary {
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  .cta-secondary:hover { transform: translateY(-3px); background: rgba(255,255,255,0.8); }
+
+  /* Anime Banners - Unique Grid */
+  .banner-section h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 28px;
+    letter-spacing: -1px;
+  }
+
+  .banner-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+
+  .banner {
+    position: relative;
+    border-radius: 28px;
+    overflow: hidden;
+    aspect-ratio: 16/10;
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: 0.4s;
+  }
+  .banner:hover { transform: translateY(-8px); }
+  
+  .banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.4s;
+  }
+  .banner:hover img { transform: scale(1.05); }
+
+  .banner-content {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 24px;
+    background: linear-gradient(180deg, transparent, rgba(0,0,0,0.7));
+    color: #fff;
+  }
+  .banner-tag {
+    display: inline-block;
+    padding: 6px 14px;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .banner h3 { font-size: 20px; font-weight: 600; }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    margin-top: 100px;
+    padding: 40px 20px;
+    color: var(--text-sec);
+    font-size: 14px;
+  }
+
+  @media (max-width: 768px) {
+    header { flex-direction: column; gap: 16px; }
+    .cta-group { flex-direction: column; }
+    .cta-btn { width: 100%; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+  <div class="bg-shapes">
+    <div class="shape shape1"></div>
+    <div class="shape shape2"></div>
+    <div class="shape shape3"></div>
+  </div>
+
+  <div class="container">
+    <header>
+      <div class="logo">
+        <i class="ph-fill ph-tornado"></i>
+        AniFlow
+      </div>
+      <a href="main.html" class="nav-btn">
+        <i class="ph-bold ph-arrow-right"></i>
+        Enter News Hub
+      </a>
+    </header>
+
+    <section class="hero">
+      <h1>Your Daily Dose of<br>Anime Universe</h1>
+      <p>Lightning-fast updates on anime, manga, and movies. Clean UI, zero clutter. Everything you need, nothing you don't.</p>
+      
+      <div class="cta-group">
+        <a href="main.html" class="cta-btn cta-primary">
+          <i class="ph-fill ph-newspaper"></i>
+          Browse All News
+        </a>
+        <a href="https://t.me/yourchannel" target="_blank" class="cta-btn cta-secondary">
+          <i class="ph-fill ph-telegram-logo"></i>
+          Join Telegram
+        </a>
+      </div>
+    </section>
+
+    <section class="banner-section">
+      <h2>Trending This Week</h2>
+      <div class="banner-grid">
+        <div class="banner" onclick="window.location.href='main.html'">
+          <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?w=800&q=80" alt="Anime Banner">
+          <div class="banner-content">
+            <span class="banner-tag">ANIME</span>
+            <h3>Jujutsu Kaisen Season 3 Confirmed</h3>
+          </div>
+        </div>
+        
+        <div class="banner" onclick="window.location.href='main.html'">
+          <img src="https://images.unsplash.com/photo-1613376023733-0a73315d9b06?w=800&q=80" alt="Anime Banner">
+          <div class="banner-content">
+            <span class="banner-tag">MOVIE</span>
+            <h3>Chainsaw Man Reze Arc Movie Date</h3>
+          </div>
+        </div>
+        
+        <div class="banner" onclick="window.location.href='main.html'">
+          <img src="https://images.unsplash.com/photo-1580477667995-2b94f01c9516?w=800&q=80" alt="Anime Banner">
+          <div class="banner-content">
+            <span class="banner-tag">MANGA</span>
+            <h3>One Piece Final Saga Updates</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>AniFlow © 2026. Crafted for anime fans.</p>
+    </footer>
+  </div>
+</body>
+</html>
